@@ -16,12 +16,20 @@ class Car extends React.Component {
         console.log('Car UNSAFE_ComponentWillUpdate', nextProps, nextState);
     }
 
+    // вместо componentWillUpdate
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('Car getDerivedStateFromProps', nextProps, prevState);
+
+        // возвращаем обновленный (или нет) State
+        return prevState
+    }
+
     componentDidUpdate() {
         console.log('Car ComponentDidUpdate');
     }
 
     componentWillUnmount() {
-        
+        console.log('Car componentWillUnmount');
     }
 
     render () {
@@ -30,7 +38,7 @@ class Car extends React.Component {
         // это будут классы инпута
         const inputClasses = ['input']
 
-        if (this.props.name !== '') {
+        if (this.props.name !=='') {
             inputClasses.push('green');
         } else {
             inputClasses.push('red');
@@ -46,12 +54,12 @@ class Car extends React.Component {
                 <h3>{this.props.name}</h3>
                 <p>Year: <strong>{this.props.year}</strong></p>
                 <input
-                    type = "text"
+                    type="text"
                     className={inputClasses.join(' ')}
-                    onChange = {this.props.onChangeName}
-                    value= {this.props.name}
+                    onChange={this.props.onChangeName}
+                    value={this.props.name}
                 />
-                <button onClick = {this.props.onDelete}>Удалить</button>
+                <button onClick={this.props.onDelete}>Удалить</button>
             </div>
         )
     }

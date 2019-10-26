@@ -250,3 +250,31 @@ shouldComponentUpdate(nextProps, nextState) - возможность оптим�
 
 
 5-34 Жизненный цикл удаления (18%)
+    componentWillUnmount() {
+        console.log('Car componentWillUnmount');
+    }
+-----
+Разрушение компонента - его удаление из DOM.
+
+
+5-35 Жизненные циклы React 16.3+
+-----
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+        console.log('Car UNSAFE_ComponentWillUpdate', nextProps, nextState);
+    }
+
+    // вместо componentWillUpdate
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('Car getDerivedStateFromProps', nextProps, prevState);
+
+        // возвращаем обновленный (или нет) State
+        return prevState
+    }
+-----
+*4.30 - getSnapshotBeforeUpdate() {}
+[просто смотрю]
+Метод позволяет получить неизмененное DOM-дерево до обновления.
+
+
+5-36 ErrorBoundary (19%)
+

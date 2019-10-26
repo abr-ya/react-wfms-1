@@ -76,11 +76,11 @@ class App extends Component {
       cars = this.state.cars.map((car, index) => {
         return (
           <Car
-            key = {index}
-            name = {car.name}
-            year = {car.year}
-            onChangeName = {(event) => this.changeNameHandler(event.target.value, index)}
-            onDelete = {this.deleteHandler.bind(this, index)}
+            key={index}
+            name={car.name}
+            year={car.year}
+            onChangeName={(event) => this.changeNameHandler(event.target.value, index)}
+            onDelete={this.deleteHandler.bind(this, index)}
           />
         )
       })
