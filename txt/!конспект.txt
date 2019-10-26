@@ -1,0 +1,252 @@
+1-1 Что такое React
+https://reactjs.org/
+>> A JavaScript library for building user interfaces
+
+Реакт - это библиотека для построения пользовательских интерфейсов.
+Реакт построен на компонентах.
+
+
+1-2 Как работает React (1%)
+Try React:
+https://reactjs.org/docs/getting-started.html#try-react
+*выглядит уже не так, как в курсе
+
+
+1-3 Что такое компоненты
+React-компонент - по сути - это JS-функция
+
+
+1-4 Create React App
+проверить node:
+nove -v
+*у меня - 10.6.3
+
+npm - node package manager
+npm -v
+*у меня 6.9.0
+
+установка пакета:
+(sudo) npm install -g create-react-app
+
+создание проекта:
+create-react-app react-wfms-1
+
+запуск:
+npm run start
+
+
+1-5 Обзор приложения
+
+
+2-6 Как работает JSX
+*примерно с 6 - интересный рассказ про React.createElement()
+JSX - по сути, надстройка над этой функцией?
+
+
+2-7 Ограничения (в JSX)
+1) вместо class надо писать className - не забывать!
+2) нужно рендерить ОДИН корневой элемент (если надо - завернуть в DIV)
+
+
+2-8 Inline-стили (3%)
+
+
+2-9 Создание простого компонента
+
+
+2-10 Вывод динамических данных (5%)
+Для указания на "чистый" JS необходимо часть кода в компоненте взять в фигурные скобки!
+Например, можно таким образом вывести результат работы функции Math.
+
+Но в этих скобках нельзя, например, определить класс.
+
+
+2-11 Передача параметров (5%)
+Строку можно передавать просто в кавычках.
+Для передачи объекта обязательно использовать фигурные скобки.
+
+
+2-12 Передача контента (6%)
+Для вывода контента, который размещен внутри компонента при его вызове используется свойство:
+props.children
+
+Таким образом мы имеем два способа передачи содержимого в компонент.
+
+
+3-13 Создание State (6%)
+
+
+3-14 Добавление событий (7%)
+События в документации:
+https://reactjs.org/docs/events.html#supported-events
+
+
+3-15 Изменение State (7%)
+
+
+3-16 Передача параметров в функцию (8%)
+Способы передачи:
+1) метод bind - более правильно!
+2) стрелочная функция
+
+
+3-17 Обработка Input (9%)
+
+
+3-18 Работа со списком (9%)
+вместо:
+-----
+<Car name={cars[0].name} year={cars[0].year} onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)} />
+<Car name={cars[1].name} year={cars[1].year} onChangeTitle={() => this.changeTitleHandler(cars[1].name)} />
+<Car name={cars[2].name} year={cars[2].year} onChangeTitle={() => this.changeTitleHandler(cars[2].name)} />   
+-----
+вывод машин в цикле:
+-----
+        { this.state.cars.map((car) => {
+          return (
+            <Car
+			  key = {index}
+              name={car.name}
+              year={car.year}
+              onChangeTitle={() => this.changeTitleHandler(car.name)}
+            />
+          )
+        }) }
+-----
+
+
+3-19 Работа с условными операторами (10%)
+1 способ - использование тернарного оператора прямо в return
+2 способ (примернно с 7.00) - классическое условие, но ДО return - в переменную, а переменная в render
+
+
+3-20 Динамические списки (10%)
+https://www.udemy.com/course/reactjswfs/learn/lecture/14740726
+*10.50 - начал про удаление элемента
+Здесь же неплохой рассказ про контекст, что его нет в стрелочной функции, а значит она может использовать контекст приложения.
+И он есть у "классических" функций - поэтому их надо bind-ить!)
+
+
+4-21 Inline-стили (11%)
+
+
+4-22 Подключение CSS (11%)
+
+
+4-23 Динамические классы (12%)
+-----
+    // это будут классы инпута
+    const inputClasses = ['input']
+
+    if (props.name !== '') {
+        inputClasses.push('green');
+    } else {
+        inputClasses.push('red');
+    }
+
+    // если длиннее 4х символов
+    if (props.name.length > 4) {
+        inputClasses.push('bold');
+    }
+-----
+className={inputClasses.join(' ')}
+-----
+
+
+4-24 Radium (12%)
+[пока только смотрю]
+гит:
+https://github.com/FormidableLabs/radium
+
+*3.30 - подключение Radium
+
+После этого можно использовать псевдоселекторы, задавая cтили через JS!
+
+
+4-25 Препроцессоры (13%)
+1) ставим библиотеку:
+yarn-add node-sass
+2) переименовываем *.css -> *.scss
+3) правим импорты
+
+После этого всё должно работать!
+
+
+4-26 CSS (SCSS) модули
+*про использование модулей - хэширование классов
+*т.е. делает классы уникальными для компонента!
+
+
+4-27 Препроцессоры [устарело]
+[просто смотрю на 1,5]
+
+
+4-28 CSS-модули [устарело] (15%)
+[просто смотрю на 1,5]
+
+
+5-29 Передача параметров в компонент (15%)
+
+
+5-30 Инициализация State (16%)
+использование:
+constructor(props) {
+	super(props) // обязательно!
+
+	// можно:
+	this.state = {
+		...
+	}
+}
+
+
+5-31 Базовый жизненный цикл (31%)
+Это этапы, через которые проходит компонент в процессе его определения.
+(наследуются от базового компонента)
+-----
+// компонент готов к рендеру (маунту)
+// здесь компонент ещё не готов
+  UNSAFE_componentWillMount() {
+    console.log('App componentWillMount');
+  }
+
+// после рендера компонента
+  componentDidMount() {
+    console.log('App componentDidMount');
+  }
+-----
+render - может вызываться несколько раз
+
+
+5-32 Создание Stateful компонента (17%)
+"Обычный функциональный компонент" == просто возвращает что-то в методе рендер и больше ничего не делает.
+
+Когда мы создаем компонент, наследуясь от базового класса, это требует больше ресурсов.
+
+Функциональные компоненты == производительность!))
+
+
+5-33 Жизненный цикл изменения (17%)
+[ост. в районе 5.30]
+-----
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log('Car UNSAFE_componentWillReceiveProps', nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('Car shouldComponentUpdate', nextProps, nextState);
+        return true;
+    }
+
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+        console.log('Car UNSAFE_ComponentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log('Car ComponentDidUpdate');
+    }
+-----
+shouldComponentUpdate(nextProps, nextState) - возможность оптимизации!
+
+
+5-34 Жизненный цикл удаления (18%)
