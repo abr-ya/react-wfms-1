@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Car from './Car/Car'
+import Car from './Car/Car';
+import Counter from './Counter/Counter';
 
 class App extends Component {
   state = {
@@ -46,7 +47,7 @@ class App extends Component {
     console.log(this.state.showCars)
   }
 
-  // обычная функция - создаёт свой контекст - её надо bind-ить!
+  // обычная функция - создаёт свой контекст - её надо bind-ить для передачи this приложения!
   deleteHandler(index) {
     //console.log(this)
     const cars = [...this.state.cars] // клонируем массив
@@ -89,6 +90,8 @@ class App extends Component {
     return(
       <div style={styleOne}>
         <h1>{this.state.pageTitle}</h1>
+
+        <Counter />
 
         <button onClick={this.toggleCarsHandler}>Toggle Cars</button>
 

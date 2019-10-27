@@ -3,34 +3,6 @@ import './Car.css';
 
 // обычный реакт-компонент
 class Car extends React.Component {
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log('Car UNSAFE_componentWillReceiveProps', nextProps);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('Car shouldComponentUpdate', nextProps, nextState);
-        return nextProps.name.trim() !== this.props.name.trim();
-    }
-
-    UNSAFE_componentWillUpdate(nextProps, nextState) {
-        console.log('Car UNSAFE_ComponentWillUpdate', nextProps, nextState);
-    }
-
-    // вместо componentWillUpdate
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('Car getDerivedStateFromProps', nextProps, prevState);
-
-        // возвращаем обновленный (или нет) State
-        return prevState
-    }
-
-    componentDidUpdate() {
-        console.log('Car ComponentDidUpdate');
-    }
-
-    componentWillUnmount() {
-        console.log('Car componentWillUnmount');
-    }
 
     render () {
         console.log('Car render');
